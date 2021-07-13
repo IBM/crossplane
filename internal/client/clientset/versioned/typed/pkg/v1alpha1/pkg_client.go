@@ -30,17 +30,17 @@ type PkgV1alpha1Interface interface {
 	LocksGetter
 }
 
-// PkgV1alpha1Client is used to interact with features provided by the pkg.crossplane.io group.
+// PkgV1alpha1Client is used to interact with features provided by the pkg.ibm.crossplane.io group.
 type PkgV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *PkgV1alpha1Client) ControllerConfigs() ControllerConfigInterface {
-	return newControllerConfigs(c)
+func (c *PkgV1alpha1Client) ControllerConfigs(namespace string) ControllerConfigInterface {
+	return newControllerConfigs(c, namespace)
 }
 
-func (c *PkgV1alpha1Client) Locks() LockInterface {
-	return newLocks(c)
+func (c *PkgV1alpha1Client) Locks(namespace string) LockInterface {
+	return newLocks(c, namespace)
 }
 
 // NewForConfig creates a new PkgV1alpha1Client for the given config.
